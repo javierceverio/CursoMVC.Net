@@ -1,0 +1,36 @@
+﻿@model CursoMVC.Models.ViewModels.DeleteUserViewModel
+@{
+    ViewBag.Title = "Eliminar Usuario";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+
+        @using (Html.BeginForm("Delete", "User", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.HiddenFor(d => d.Id)
+            @Html.AntiForgeryToken()
+
+            @Html.LabelFor(d => d.Email)
+            @Html.TextBoxFor(d => d.Email, new { @class = "form-control", @readonly = "readonly" })
+
+            @Html.LabelFor(d => d.Edad)
+            @Html.TextBoxFor(d => d.Edad, new { @class = "form-control", @readonly = "readonly" })
+
+            <br />
+            <br />
+            <div class="row">
+                <p>¿Esta seguro que quiere eliminar al usuario?</p>
+            </div>
+            <br />
+            <br />
+            <div class="row col-lg-12" style="text-align: left">
+                <input type="submit" value="Eliminar" class="btn btn-danger" />
+                <input type="button" value="Cancelar" class="btn btn-default" onclick="document.location.href = '@Url.Content("~/User/")'" />
+            </div>
+        }
+
+    </div>
+</div>
